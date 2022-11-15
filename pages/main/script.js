@@ -10,6 +10,7 @@
         })
         .then(data => {
             books = data;
+            console.log(books);
         });
 
   // const books = [{
@@ -173,7 +174,7 @@
 
 
   // MAIN-CONTENT-BOOKS
-  for (const book of books) {
+  for (let book of books) {
 
     const li = document.createElement('li');
     const book_ = document.createElement('div');
