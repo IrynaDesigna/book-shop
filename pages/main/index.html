@@ -7,9 +7,40 @@
     <link rel="stylesheet" href="style.css">
 
     <title>Book Shop</title>
+
+    <script src="https://kit.fontawesome.com/1df12792e0.js" crossorigin="anonymous"></script>
   </head>
   <body>
-
+    <header></header>
+    <main class="main"></main>
+    <form class="" action="index.html" method="post">
+      <input type="text" placeholder="Name" minlength="4" required>
+      <input type="text" placeholder="Surname" minlength="5" required>
+      <input type="date" required>
+      <input type="text" placeholder="Street" minlength="5" required>
+      <input type="number" placeholder="House number" minlength="" required>
+      <input type="text" placeholder="Flat number" minlength="" required>
+      <div class="">
+        <p>Choose the payment type</p>
+        <label for="">Cash</label>
+        <input type="radio" name="payment" value="" required>
+        <label for="">Card</label>
+        <input type="radio" name="payment" value="" required checked>
+      </div>
+      <div class="">
+        <p>Choose 2 gifts</p>
+        <label for="">pack as a gift</label>
+        <input type="checkbox" name="gifts" value="" required checked>
+        <label for="">add postcard</label>
+        <input type="checkbox" name="gifts" value="" required checked>
+        <label for="">provide 2% discount to the next time</label>
+        <input type="checkbox" name="gifts" value="" required>
+        <label for="">branded pen or pencil</label>
+        <input type="checkbox" name="gifts" value="" required>
+      </div>
+      <button type="button" name="button" disabled>Submit</button>
+    </form>
+    <footer></footer>
     <script type="text/javascript" src="script.js"></script>
   </body>
 </html>
