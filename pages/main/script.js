@@ -1,19 +1,6 @@
 ;(function () {
 	"use strict";
 
-  let books;
-
-
-  fetch('../books.json') //path to the file with json data
-        .then(response => {
-            return response.json();
-        })
-        .then(data => {
-            books = data;
-            return books;
-
-        });
-  console.log(books);
   // const books = [{
   //   "author": "Douglas Crockford",
   //   "imageLink": "../../assets/images/books/0.jpg",
@@ -175,65 +162,133 @@
 
 
   // MAIN-CONTENT-BOOKS
-  for (let book of books) {
 
-    const li = document.createElement('li');
-    const book_ = document.createElement('div');
-    const bookCover = document.createElement('div');
-    const bookCoverImg = document.createElement('img');
-    const bookDescrCover = document.createElement('div');
-    const bookAuthor = document.createElement('h5');
-    const bookTitle = document.createElement('h3');
-    const bookPrice = document.createElement('h4');
-    const bookDescr = document.createElement('p');
-    const addBook = document.createElement('div');
-    const readMore =  document.createElement('div');
+  fetch('../books.json') //path to the file with json data
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
 
+          for (const book of data) {
 
-    fragment.append(li);
-    li.classList.add('book-container');
-    li.appendChild(book_);
-    book_.classList.add('book');
-
-
-    book_.appendChild(bookCover);
-    book_.appendChild(bookCoverImg);
-    bookCoverImg.setAttribute('src', book.imageLink);
-    bookCoverImg.classList.add('book-cover-img');
+            const li = document.createElement('li');
+            const book_ = document.createElement('div');
+            const bookCover = document.createElement('div');
+            const bookCoverImg = document.createElement('img');
+            const bookDescrCover = document.createElement('div');
+            const bookAuthor = document.createElement('h5');
+            const bookTitle = document.createElement('h3');
+            const bookPrice = document.createElement('h4');
+            const bookDescr = document.createElement('p');
+            const addBook = document.createElement('div');
+            const readMore =  document.createElement('div');
 
 
-    book_.appendChild(bookDescrCover);
-    bookDescrCover.classList.add('book-descr-cover');
+            fragment.append(li);
+            li.classList.add('book-container');
+            li.appendChild(book_);
+            book_.classList.add('book');
 
-    bookDescrCover.appendChild(bookTitle);
-    bookTitle.innerText = book.title;
-    bookTitle.classList.add('book-title');
 
-    bookDescrCover.appendChild(bookAuthor);
-    bookAuthor.innerText = book.author;
-    bookAuthor.classList.add('book-author');
+            book_.appendChild(bookCover);
+            book_.appendChild(bookCoverImg);
+            bookCoverImg.setAttribute('src', book.imageLink);
+            bookCoverImg.classList.add('book-cover-img');
 
-    bookDescrCover.appendChild(bookPrice);
-    bookPrice.innerText = '$' + book.price;
-    bookPrice.classList.add('book-price');
 
-    bookDescrCover.appendChild(readMore);
-    readMore.innerText = 'Read more';
-    readMore.classList.add('read-more-btn');
+            book_.appendChild(bookDescrCover);
+            bookDescrCover.classList.add('book-descr-cover');
 
-    bookDescrCover.appendChild(bookDescr);
-    bookDescr.innerText = book.description;
-    bookDescr.classList.add('book-descr');
+            bookDescrCover.appendChild(bookTitle);
+            bookTitle.innerText = book.title;
+            bookTitle.classList.add('book-title');
 
-    bookDescrCover.appendChild(addBook);
-    addBook.classList.add('add-book');
-    addBook.setAttribute('book', book.title);
-    addBook.innerText = 'Add to cart';
-  }
+            bookDescrCover.appendChild(bookAuthor);
+            bookAuthor.innerText = book.author;
+            bookAuthor.classList.add('book-author');
 
-  main.appendChild(ul);
-  ul.append(fragment);
-  ul.classList.add('book-list');
+            bookDescrCover.appendChild(bookPrice);
+            bookPrice.innerText = '$' + book.price;
+            bookPrice.classList.add('book-price');
+
+            bookDescrCover.appendChild(readMore);
+            readMore.innerText = 'Read more';
+            readMore.classList.add('read-more-btn');
+
+            bookDescrCover.appendChild(bookDescr);
+            bookDescr.innerText = book.description;
+            bookDescr.classList.add('book-descr');
+
+            bookDescrCover.appendChild(addBook);
+            addBook.classList.add('add-book');
+            addBook.setAttribute('book', book.title);
+            addBook.innerText = 'Add to cart';
+          }
+
+          main.appendChild(ul);
+          ul.append(fragment);
+          ul.classList.add('book-list');
+
+        });
+  // for (const book of books) {
+  //
+  //   const li = document.createElement('li');
+  //   const book_ = document.createElement('div');
+  //   const bookCover = document.createElement('div');
+  //   const bookCoverImg = document.createElement('img');
+  //   const bookDescrCover = document.createElement('div');
+  //   const bookAuthor = document.createElement('h5');
+  //   const bookTitle = document.createElement('h3');
+  //   const bookPrice = document.createElement('h4');
+  //   const bookDescr = document.createElement('p');
+  //   const addBook = document.createElement('div');
+  //   const readMore =  document.createElement('div');
+  //
+  //
+  //   fragment.append(li);
+  //   li.classList.add('book-container');
+  //   li.appendChild(book_);
+  //   book_.classList.add('book');
+  //
+  //
+  //   book_.appendChild(bookCover);
+  //   book_.appendChild(bookCoverImg);
+  //   bookCoverImg.setAttribute('src', book.imageLink);
+  //   bookCoverImg.classList.add('book-cover-img');
+  //
+  //
+  //   book_.appendChild(bookDescrCover);
+  //   bookDescrCover.classList.add('book-descr-cover');
+  //
+  //   bookDescrCover.appendChild(bookTitle);
+  //   bookTitle.innerText = book.title;
+  //   bookTitle.classList.add('book-title');
+  //
+  //   bookDescrCover.appendChild(bookAuthor);
+  //   bookAuthor.innerText = book.author;
+  //   bookAuthor.classList.add('book-author');
+  //
+  //   bookDescrCover.appendChild(bookPrice);
+  //   bookPrice.innerText = '$' + book.price;
+  //   bookPrice.classList.add('book-price');
+  //
+  //   bookDescrCover.appendChild(readMore);
+  //   readMore.innerText = 'Read more';
+  //   readMore.classList.add('read-more-btn');
+  //
+  //   bookDescrCover.appendChild(bookDescr);
+  //   bookDescr.innerText = book.description;
+  //   bookDescr.classList.add('book-descr');
+  //
+  //   bookDescrCover.appendChild(addBook);
+  //   addBook.classList.add('add-book');
+  //   addBook.setAttribute('book', book.title);
+  //   addBook.innerText = 'Add to cart';
+  // }
+  //
+  // main.appendChild(ul);
+  // ul.append(fragment);
+  // ul.classList.add('book-list');
 
   // footer
   for (let link in navContent) {
