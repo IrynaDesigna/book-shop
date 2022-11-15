@@ -10,9 +10,10 @@
         })
         .then(data => {
             books = data;
-            console.log(books);
-        });
+            return books;
 
+        });
+  console.log(books);
   // const books = [{
   //   "author": "Douglas Crockford",
   //   "imageLink": "../../assets/images/books/0.jpg",
@@ -174,7 +175,7 @@
 
 
   // MAIN-CONTENT-BOOKS
-  for (let book of Object.keys(books)) {
+  for (let book of books) {
 
     const li = document.createElement('li');
     const book_ = document.createElement('div');
