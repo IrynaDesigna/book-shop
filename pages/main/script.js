@@ -174,7 +174,7 @@
 
 
   // MAIN-CONTENT-BOOKS
-  for (let book of books) {
+  for (let book of Object.keys(books)) {
 
     const li = document.createElement('li');
     const book_ = document.createElement('div');
