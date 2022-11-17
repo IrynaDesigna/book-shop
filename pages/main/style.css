@@ -258,6 +258,12 @@ ul.book-list {
   margin-bottom: 10px;
 }
 
+.bag-book-title,
+.bag-book-price {
+  color: rgb(255 229 151);
+  font-weight: 800;
+}
+
 .book-remove {
   padding: 2px 3px;
   background: #fff;
@@ -266,6 +272,7 @@ ul.book-list {
   border-radius: 3px;
   margin-top: 5px;
   font-weight: 700;
+  cursor: pointer;
   }
 
 .book-remove:hover {

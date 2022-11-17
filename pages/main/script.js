@@ -81,7 +81,7 @@
 		  ul.append(fragment);
 		  ul.classList.add('book-list');
 
-			// ----- READ-MORE-BTN
+			// ----- READ-MORE-BTN -----------------------------------------------------------
 			const bookDecrBlock = document.getElementsByClassName('book-descr');
 			const readMoreBtns = document.getElementsByClassName('read-more-btn');
 			const closeBookDecr = document.getElementsByClassName('close-book-descr');
@@ -96,7 +96,7 @@
 				// console.log(num.innerHTML + " is clicked")
 			}
 
-			// ----- BAG - BLOCK
+			// ----- BAG - BLOCK -----------------------------------------------------------
 			// const bag = document.getElementById('bag');
 			const booksList = document.createElement('ul');
 
@@ -117,7 +117,7 @@
 			bagDescr.classList.add('bag-descr');
 			bagDescr.innerText = 'Welcome to our amazing book shop! Add your books here!'
 
-			// ----- ADD-TO-CART-BTN
+			// ----- ADD-TO-CART-BTN -----------------------------------------------------------
 			const addToCart = document.getElementsByClassName('add-book');
 
 			let booksInCart = [];
@@ -128,10 +128,12 @@
 
 			function getBook(num) {
 				confirmOrder.setAttribute('style', 'display: flex');
-				
+
 				if (booksInCart.length > 0) {
 					for (let book in booksInCart ) {
 						if (booksInCart[book].bookTitle === addToCart[num].parentElement.children[0].innerText) {
+							// console.log(booksInCart[book].bookTitle);
+							// console.log(num);
 							event.stopPropagation();
         			alert("You have already have this book in your bag!");
 							return;
@@ -139,15 +141,13 @@
 					}
 				}
 
-				booksInCart.push({
+				const newBook = {
 					bookTitle: addToCart[num].parentElement.children[0].innerText,
 					bookAuthor: addToCart[num].parentElement.children[1].innerText,
 					bookPrice: addToCart[num].parentElement.children[2].innerText
-				});
+				};
 
-				console.log(addToCart[num].parentElement.children[0].innerText);
-				console.log(addToCart[num].parentElement.children[1].innerText);
-				console.log(addToCart[num].parentElement.children[2].innerText);
+				booksInCart.push(newBook);
 
 				const book = document.createElement('li');
 				const bookTitle = document.createElement('div');
@@ -175,11 +175,22 @@
 				book.appendChild(removeBook);
 				removeBook.classList.add('book-remove');
 				removeBook.innerHTML = 'Remove book ' + '<i class="fa-solid fa-trash-can"></i>';
+
+				removeBook.onclick = function() { removeBookFn(removeBook, num) };
+			}
+
+			// ----- REMOVE-BOOK-BTN -----------------------------------------------------------
+
+
+			function removeBookFn(book, i) {
+				book.parentElement.remove();
+				delete booksInCart[i];
 			}
 
 			bag.appendChild(confirmOrder);
 			confirmOrder.classList.add('confirm-order');
 			confirmOrder.innerText = 'Confirm order';
+
 
     });
 
