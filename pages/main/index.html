@@ -13,32 +13,39 @@
   <body>
     <header></header>
     <main class="main"></main>
-    <form class="" action="index.html" method="post">
-      <input type="text" placeholder="Name" minlength="4" required>
-      <input type="text" placeholder="Surname" minlength="5" required>
-      <input type="date" required>
-      <input type="text" placeholder="Street" minlength="5" required>
-      <input type="number" placeholder="House number" minlength="" required>
-      <input type="text" placeholder="Flat number" minlength="" required>
-      <div class="">
-        <p>Choose the payment type</p>
-        <label for="">Cash</label>
-        <input type="radio" name="payment" value="" required>
-        <label for="">Card</label>
-        <input type="radio" name="payment" value="" required checked>
+    <form class="" action="index.html" method="post" id="order-book">
+      <input class="order-book-input" type="text" placeholder="Name" minlength="4" required id="name">
+      <input class="order-book-input" type="text" placeholder="Surname" minlength="5" required id="surname">
+      <input class="order-book-input address" type="text" placeholder="Street" minlength="5" required>
+      <input class="order-book-input address" type="number" placeholder="House number" min="0" minlength="" required>
+      <input class="order-book-input address" type="number" placeholder="Appartment number" min="0" minlength="" required>
+      <br>
+      <label for="delivery-date">Choose delivery date</label>
+      <input class="order-book-input" type="date" required id="delivery-date">
+      <div class="choose-your-payment">
+        <div class="gifts">
+          <p>Choose 2 gifts</p>
+          <label for="">Pack as a gift</label>
+          <input type="checkbox" name="gifts" value="" required checked>
+          <br>
+          <label for="">Add postcard</label>
+          <input type="checkbox" name="gifts" value="" required checked>
+          <br>
+          <label for="">Provide 2% discount to the next time</label>
+          <input type="checkbox" name="gifts" value="" required>
+          <br>
+          <label for="">Branded pen or pencil</label>
+          <input type="checkbox" name="gifts" value="" required>
+        </div>
+        <div class="payment-type">
+          <p>Choose the payment type</p>
+          <label for="">Cash</label>
+          <input type="radio" name="payment" value="" required>
+          <label for="">Card</label>
+          <input type="radio" name="payment" value="" required checked>
+        </div>
       </div>
-      <div class="">
-        <p>Choose 2 gifts</p>
-        <label for="">pack as a gift</label>
-        <input type="checkbox" name="gifts" value="" required checked>
-        <label for="">add postcard</label>
-        <input type="checkbox" name="gifts" value="" required checked>
-        <label for="">provide 2% discount to the next time</label>
-        <input type="checkbox" name="gifts" value="" required>
-        <label for="">branded pen or pencil</label>
-        <input type="checkbox" name="gifts" value="" required>
-      </div>
-      <button type="button" name="button" disabled>Submit</button>
+      <button type="button" name="button" id="order-submit">Submit</button>
     </form>
     <footer></footer>
     <script type="text/javascript" src="script.js"></script>
