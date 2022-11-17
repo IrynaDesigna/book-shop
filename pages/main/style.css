@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;700;800&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,700;0,800;1,200&display=swap');
 :root {
   --grey: #efefef;
   --text: #2d3635;
@@ -9,20 +8,19 @@
   --radius: 10px;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
+  position: relative;
   font-family: 'Nunito', sans-serif;
   color: var(--text);
   font-size: 1em;
   user-select: none;
   transition: all 0.2s linear;
-}
-
-/* ----- COMMON STYLES ----- */
-
-* {
-  margin: 0;
-  padding: 0;
 }
 
 h5 {
@@ -40,135 +38,35 @@ a {
   color: var(--text);
 }
 
-header,
 ul,
 .book,
-.nav,
 .add-book,
-.choose-your-payment,
-.user-info,
-.user,
-.footer-nav  {
+main,
+.confirm-order {
   display: flex;
 }
 
-header,
-.choose-your-payment,
-.user-info {
-  justify-content: space-between;
-}
-
 .add-book,
-.footer-nav {
+.confirm-order {
   justify-content: center;
 }
 
-header,
-.nav,
 .add-book,
-.user-info,
-.user,
-.footer-nav {
+.confirm-order {
   align-items: center;
 }
 
 .book-container,
 .book,
 .book-descr-cover,
-header,
-.book-descr,
-#order-book,
-.order-book-input {
+.book-descr {
   box-sizing: border-box;
 }
-
-/* ----- COMMON STYLES ----- */
-
-/* ----- HEADER ----- */
-
-header {
-  height: 80px;
-  padding: 15px 30px;
-  border-bottom: 1px solid #efefef;
-  margin-bottom: 30px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: #fff;
-  width: 100%;
-  z-index: 1000;
-}
-
-.nav li {
-  margin: 0 15px;
-}
-
-.logo {
-  font-weight: 800;
-  font-size: 32px;
-
-}
-
-.nav li:nth-child(2) a {
-  color: var(--orange);
-  font-weight: 700;
-}
-
-.nav li:hover a {
-  color: var(--orange);
-}
-
-.nav li:first-child {
-  position: relative;
-}
-
-.nav li:first-child::after {
-  content: "";
-  height: 5px;
-  width: 50%;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 75px;
-  border-radius: 2px;
-  background: linear-gradient(to right, rgba(239,196,67,1) 0%, rgba(239,196,67,1) 22%, rgba(228,119,35,1) 22%, rgba(228,119,35,1) 50%, rgba(43,188,176,1) 50%, rgba(43,188,176,1) 100%);
-}
-
-.logo>span {
-  font-weight: 400;
-}
-
-.user-info:hover {
-  color: var(--blue);
-}
-
-.user-info:hover .user-photo {
-  box-sizing: border-box;
-  border: 1px solid var(--blue);
-  border-radius: 50%;
-}
-
-.user-info span {
-  order: 2;
-}
-
-.fa-cart-shopping {
-  margin-right: 20px;
-}
-
-.user-photo {
-  width: 30px;
-  order: 1;
-  margin-right: 10px;
-}
-
-/* ----- HEADER ----- */
-
-/* ----- MAIN ----- */
 
 main {
   max-width: 1140px;
-  margin: 100px auto 80px;
+  margin: 50px auto 80px;
+  justify-content: space-between;
 }
 
 .book-price {
@@ -179,10 +77,12 @@ main {
 
 ul.book-list {
   flex-wrap: wrap;
+  width: 70%;
+  margin-left: 30%;
 }
 
 .book-container {
-  width: 50%;
+  width: 100%;
   padding: 15px;
   position: relative;
 }
@@ -267,97 +167,27 @@ ul.book-list {
   background: var(--blue);
 }
 
-/* ----- FORM ----- */
-
-#order-book {
-  border: 1px solid var(--grey);
-}
-
-.order-book-input {
-  border: none;
-  height: 30px;
-  border-radius: 5px;
-  padding: 0 10px;
-  margin-bottom: 10px;
-}
-
-#order-book {
-  width: 80%;
-  margin: 80px auto;
-  border: 1px solid var(--grey);
-  padding: 50px 15%;
-  border-radius: var(--radius);
-  background: var(--grey);
-}
-
-#name, #surname,.address {
-  width: 100%;
-}
-
-.payment-type, .gifts {
-  color: #525252;
-  margin-bottom: 15px;
-  width: 50%;
-  padding: 0 20px 0 0;
-  font-size: .8em;
-}
-
-.payment-type p, .gifts p {
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-#order-submit {
-  height: 40px;
-  width: 120px;
-  background: var(--yellow);
-  border-radius: 20px;
-  color: #fff;
-  font-weight: 700;
-  cursor: pointer;
-  margin: 30px auto 0;
-  display: block;
-  border: none;
-}
-
-#order-submit:hover {
-  background: var(--orange);
-}
-#order-submit:active {
+/* ----- BAG ----- */
+#bag {
+  position: fixed;
+  width: 30%;
+  height: 100%;
   background: var(--blue);
+  top: 0;
+  left: 0;
+  padding: 30px;
+  color: #fff;
 }
 
-/* ----- MAIN ----- */
-
-/* ----- FOOTER ----- */
-
-.footer-nav {
-  background: var(--text);
-  height: 150px;
-}
-
-.footer-nav a {
-  color: var(--grey);
-}
-
-.footer-nav a:hover {
-  color: var(--blue);
-}
-
-.footer-nav li {
-  margin: 0 15px;
-}
-
-.footer-nav li:nth-child(2) a {
-  color: var(--blue);
-  font-weight: 700;
-}
-
-.footer-nav li:first-child {
+.logo {
+  display: block;
+  font-weight: 800;
+  font-size: 32px;
+  color: #fff;
   position: relative;
 }
 
-.footer-nav .logo::after {
+.logo::after {
   content: "";
   height: 5px;
   width: 50%;
@@ -366,7 +196,45 @@ ul.book-list {
   bottom: 0;
   width: 75px;
   border-radius: 2px;
-  background: var(--grey);
+  background: linear-gradient(to right, rgba(239,196,67,1) 0%, rgba(239,196,67,1) 22%, rgba(228,119,35,1) 22%, rgba(228,119,35,1) 50%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 100%);
+}
+
+.bag-descr {
+  font-style: italic;
+  font-weight: 200;
+  margin-bottom: 30px;
+}
+
+.confirm-order {
+  display: none;
+  height: 40px;
+  width: 120px;
+  background: #fff;
+  color: var(--blue);
+  font-weight: 700;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.confirm-order:hover {
+  background: var(--yellow);
+  color: #fff;
+}
+
+.confirm-order:active {
+  background: var(--orange);
+  color: #fff;
+}
+
+.bag-list {
+  flex-direction: column;
+  font-size: .8em;
+}
+
+.bag-list li {
+  border: 1px solid #fff;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 @media only screen and (max-width: 1000px) {

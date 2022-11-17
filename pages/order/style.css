@@ -1,0 +1,82 @@
+@import "../../styles/main.css";
+@import "../../styles/_header.css";
+@import "../../styles/_footer.css";
+
+body {
+  padding-top: 80px;
+}
+
+#order-book,
+.order-book-input {
+  box-sizing: border-box;
+}
+
+.choose-your-payment {
+  display: flex;
+}
+
+.choose-your-payment{
+  justify-content: space-between;
+}
+
+.hidden-book-number {
+  display: none;
+}
+
+#order-book {
+  border: 1px solid var(--grey);
+}
+
+.order-book-input {
+  border: none;
+  height: 30px;
+  border-radius: 5px;
+  padding: 0 10px;
+  margin-bottom: 10px;
+}
+
+#order-book {
+  width: 80%;
+  margin: 80px auto;
+  border: 1px solid var(--grey);
+  padding: 50px 15%;
+  border-radius: var(--radius);
+  background: var(--grey);
+}
+
+#name, #surname,.address {
+  width: 100%;
+}
+
+.payment-type, .gifts {
+  color: #525252;
+  margin-bottom: 15px;
+  width: 50%;
+  padding: 0 20px 0 0;
+  font-size: .8em;
+}
+
+.payment-type p, .gifts p {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+#order-submit {
+  height: 40px;
+  width: 120px;
+  background: var(--yellow);
+  border-radius: 20px;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 30px auto 0;
+  display: block;
+  border: none;
+}
+
+#order-submit:hover {
+  background: var(--orange);
+}
+#order-submit:active {
+  background: var(--blue);
+}
