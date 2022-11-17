@@ -76,109 +76,111 @@
 		    addBook.innerText = 'Add to cart';
 		  };
 
+
 			main.appendChild(ul);
 		  ul.append(fragment);
 		  ul.classList.add('book-list');
 
+			// ----- READ-MORE-BTN
+			const bookDecrBlock = document.getElementsByClassName('book-descr');
+			const readMoreBtns = document.getElementsByClassName('read-more-btn');
+			const closeBookDecr = document.getElementsByClassName('close-book-descr');
+
+			for (let i = 0; i < readMoreBtns.length; i++) {
+				readMoreBtns[i].onclick = function() {openDescription(i)};
+				closeBookDecr[i].onclick = function() {openDescription(i)};
+			}
+
+			function openDescription(num) {
+				bookDecrBlock[num].classList.toggle("book-descr-hidden");
+				// console.log(num.innerHTML + " is clicked")
+			}
+
+			// ----- BAG - BLOCK
+			// const bag = document.getElementById('bag');
+			const booksList = document.createElement('ul');
+
+			main.appendChild(bag);
+			bag.setAttribute('id','bag')
+
+
+			const logo = document.createElement('a');
+			const bagDescr = document.createElement('p');
+			const confirmOrder = document.createElement('a');
+
+			bag.appendChild(logo);
+			logo.setAttribute('href','../main/');
+			logo.classList.add('logo');
+			logo.innerHTML = `book<span class='logo-span'>shop</span>`;
+
+			bag.appendChild(bagDescr);
+			bagDescr.classList.add('bag-descr');
+			bagDescr.innerText = 'Welcome to our amazing book shop! Add your books here!'
+
+			// ----- ADD-TO-CART-BTN
+			const addToCart = document.getElementsByClassName('add-book');
+
+			let booksInCart = [];
+
+			for (let i = 0; i < addToCart.length; i++) {
+				addToCart[i].onclick = function() { getBook(i) };
+			}
+
+			function getBook(num) {
+				confirmOrder.setAttribute('style', 'display: flex');
+				
+				if (booksInCart.length > 0) {
+					for (let book in booksInCart ) {
+						if (booksInCart[book].bookTitle === addToCart[num].parentElement.children[0].innerText) {
+							event.stopPropagation();
+        			alert("You have already have this book in your bag!");
+							return;
+						}
+					}
+				}
+
+				booksInCart.push({
+					bookTitle: addToCart[num].parentElement.children[0].innerText,
+					bookAuthor: addToCart[num].parentElement.children[1].innerText,
+					bookPrice: addToCart[num].parentElement.children[2].innerText
+				});
+
+				console.log(addToCart[num].parentElement.children[0].innerText);
+				console.log(addToCart[num].parentElement.children[1].innerText);
+				console.log(addToCart[num].parentElement.children[2].innerText);
+
+				const book = document.createElement('li');
+				const bookTitle = document.createElement('div');
+				const bookAuthor = document.createElement('div');
+				const bookPrice = document.createElement('div');
+				const removeBook = document.createElement('div');
+
+				bag.appendChild(booksList);
+				booksList.classList.add('bag-list');
+
+				booksList.appendChild(book);
+
+				book.appendChild(bookTitle);
+				bookTitle.classList.add('bag-book-title');
+				bookTitle.innerText = addToCart[num].parentElement.children[0].innerText;
+
+				book.appendChild(bookAuthor);
+				bookAuthor.classList.add('bag-book-author');
+				bookAuthor.innerText = addToCart[num].parentElement.children[1].innerText;
+
+				book.appendChild(bookPrice);
+				bookPrice.classList.add('bag-book-price');
+				bookPrice.innerText = addToCart[num].parentElement.children[2].innerText;
+
+				book.appendChild(removeBook);
+				removeBook.classList.add('book-remove');
+				removeBook.innerHTML = 'Remove book ' + '<i class="fa-solid fa-trash-can"></i>';
+			}
+
+			bag.appendChild(confirmOrder);
+			confirmOrder.classList.add('confirm-order');
+			confirmOrder.innerText = 'Confirm order';
+
     });
-
-	// ----- BAG - BLOCK
-	main.appendChild(bag);
-	bag.setAttribute('id','bag')
-
-	const logo = document.createElement('a');
-	const bagDescr = document.createElement('p');
-	const confirmOrder = document.createElement('a');
-
-	bag.appendChild(logo);
-	logo.setAttribute('href','../main/');
-	logo.classList.add('logo');
-	logo.innerHTML = `book<span class='logo-span'>shop</span>`;
-
-	bag.appendChild(bagDescr);
-	bagDescr.classList.add('bag-descr');
-	bagDescr.innerText = 'Welcome to our amazing book shop! Add your books here!'
-
-	// ----- READ-MORE-BTN
-  const readMoreBtns = document.getElementsByClassName('read-more-btn');
-  const bookDecrBlock = document.getElementsByClassName('book-descr');
-  const closeBookDecr = document.getElementsByClassName('close-book-descr');
-	// ----- ADD-TO-CART-BTN
-	const addToCart = document.getElementsByClassName('add-book');
-	const bookInfo = {
-		bookTitle: document.getElementsByClassName('book-title'),
-		bookAuthor: document.getElementsByClassName('book-author'),
-		bookPrice: document.getElementsByClassName('book-price')
-	};
-
-  // ----- using window.onload as I am getting my html from promises, so they must be loaded before I can get them from the page
-  window.onload = function() {
-		const bag = document.getElementById('bag');
-		const booksList = document.createElement('ul');
-		let orderedBooksList = [];
-
-		for (let btn in addToCart) {
-		 if (btn <= 9) {
-
-			 // ----- ADD-TO-CART-BTN
-			 addToCart[btn].onclick = function() { getBook(btn) };
-
-			 // ----- READ-MORE-BTN
-			 readMoreBtns[btn].onclick = function() {openDescription(btn)};
-		   closeBookDecr[btn].onclick = function() {openDescription(btn)};
-		 }
-		}
-
-		function openDescription(num) {
-			bookDecrBlock[num].classList.toggle("book-descr-hidden");
-		}
-
-		function getBook(num) {
-			orderedBooksList.push({
-				bookTitle: bookInfo.bookTitle[num].innerText,
-				bookAuthor: bookInfo.bookAuthor[num].innerText,
-				bookPrice: bookInfo.bookPrice[num].innerText
-			});
-
-			console.log(orderedBooksList[num]);
-
-			const book = document.createElement('li');
-			const bookTitle = document.createElement('div');
-			const bookAuthor = document.createElement('div');
-			const bookPrice = document.createElement('div');
-			const removeBook = document.createElement('div');
-
-			bag.appendChild(booksList);
-			booksList.classList.add('bag-list');
-
-			booksList.appendChild(book);
-
-			book.appendChild(bookTitle);
-			bookTitle.classList.add('bag-book-title');
-			bookTitle.innerText = orderedBooksList[num].bookTitle;
-
-			book.appendChild(bookAuthor);
-			bookAuthor.classList.add('bag-book-author');
-			bookAuthor.innerText = orderedBooksList[num].bookAuthor;
-
-			book.appendChild(bookPrice);
-			bookPrice.classList.add('bag-book-price');
-			bookPrice.innerText = orderedBooksList[num].bookPrice;
-
-			book.appendChild(removeBook);
-			removeBook.classList.add('book-remove');
-			removeBook.innerHTML = 'Remove book ' + '<i class="fa-solid fa-trash-can"></i>';
-			
-		}
-
-		bag.appendChild(confirmOrder);
-		confirmOrder.classList.add('confirm-order');
-		confirmOrder.innerText = 'Confirm order';
-
-  }
-
-
-
-
 
 })();
