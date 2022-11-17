@@ -117,23 +117,20 @@
 		const booksList = document.createElement('ul');
 		let orderedBooksList = [];
 
-		// ----- READ-MORE-BTN
-		for (let btn in readMoreBtns) {
+		for (let btn in addToCart) {
 		 if (btn <= 9) {
-		   readMoreBtns[btn].onclick = function() {openDescription(btn)};
+
+			 // ----- ADD-TO-CART-BTN
+			 addToCart[btn].onclick = function() { getBook(btn) };
+
+			 // ----- READ-MORE-BTN
+			 readMoreBtns[btn].onclick = function() {openDescription(btn)};
 		   closeBookDecr[btn].onclick = function() {openDescription(btn)};
 		 }
 		}
 
 		function openDescription(num) {
-      bookDecrBlock[num].classList.toggle("book-descr-hidden");
-    }
-
-		// ----- ADD-TO-CART-BTN
-		for (let btn in addToCart) {
-		 if (btn <= 9) {
-		   addToCart[btn].onclick = function() { getBook(btn) };
-		 }
+			bookDecrBlock[num].classList.toggle("book-descr-hidden");
 		}
 
 		function getBook(num) {
@@ -171,14 +168,16 @@
 			book.appendChild(removeBook);
 			removeBook.classList.add('book-remove');
 			removeBook.innerHTML = 'Remove book ' + '<i class="fa-solid fa-trash-can"></i>';
-
+			
 		}
-		
+
 		bag.appendChild(confirmOrder);
 		confirmOrder.classList.add('confirm-order');
 		confirmOrder.innerText = 'Confirm order';
 
   }
+
+
 
 
 
