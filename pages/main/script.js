@@ -203,7 +203,6 @@
 				if (booksInCart.length > 0) {
 					booksInCart = booksInCart.filter(e => e !== undefined)
 				}
-
 			}
 
 			bag.appendChild(confirmOrderContainer);
@@ -215,13 +214,13 @@
 
 			confirmOrderContainer.appendChild(confirmOrder);
 			confirmOrder.classList.add('confirm-order');
+			confirmOrder.setAttribute('href','../order/')
 			confirmOrder.innerText = 'Confirm order';
 
 			function getTotalSum() {
 				let sumArray = [];
 				if (booksInCart.length > 0) {
 					booksInCart.forEach((item, i) => {
-						// console.log(item.bookPrice);
 						sumArray.push(Number(item.bookPrice.slice(1)));
 					});
 				}
@@ -232,7 +231,6 @@
 				totalSum.innerText = 'Total is ' + sum;
 			}
 
-			// getTotalSum()
 
     });
 

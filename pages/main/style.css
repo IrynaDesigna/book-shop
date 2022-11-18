@@ -97,7 +97,7 @@ ul.book-list {
   left: 15px;
   width: calc(100% - 30px);
   height: calc(100% - 30px);
-  background: rgba(0,0,0,0.9);
+  background: rgba(0,0,0,0.8);
   color: #fff;
   border-radius: var(--radius);
   padding: 60px 20px 20px;;
