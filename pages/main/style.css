@@ -163,9 +163,9 @@ ul.book-list {
   background: var(--orange);
 }
 
-.add-book:active {
+/* .add-book:active {
   background: var(--blue);
-}
+} */
 
 /* ----- BAG ----- */
 #bag {

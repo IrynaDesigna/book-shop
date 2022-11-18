@@ -6,6 +6,8 @@
 	const bag = document.createElement('div');
   const fragment = new DocumentFragment();
 
+	let booksInCart = [];
+
   // MAIN-CONTENT-BOOKS
 
   fetch('../books.json') //path to the file with json data
@@ -93,11 +95,9 @@
 
 			function openDescription(num) {
 				bookDecrBlock[num].classList.toggle("book-descr-hidden");
-				// console.log(num.innerHTML + " is clicked")
 			}
 
 			// ----- BAG - BLOCK -----------------------------------------------------------
-			// const bag = document.getElementById('bag');
 			const booksList = document.createElement('ul');
 
 			main.appendChild(bag);
@@ -120,31 +120,44 @@
 			// ----- ADD-TO-CART-BTN -----------------------------------------------------------
 			const addToCart = document.getElementsByClassName('add-book');
 
-			let booksInCart = [];
+
 
 			for (let i = 0; i < addToCart.length; i++) {
-				addToCart[i].onclick = function() { getBook(i) };
+				addToCart[i].addEventListener('click', function(e) {
+					getBook(e.path[0]);
+				});
+				addToCart[i].addEventListener('dragend', function(e) {
+					getBook(e.toElement);
+				});
 			}
 
-			function getBook(num) {
+			function getBook(element) {
+
 				confirmOrder.setAttribute('style', 'display: flex');
 
 				if (booksInCart.length > 0) {
+					booksInCart = booksInCart.filter(e => e !== undefined)
 					for (let book in booksInCart ) {
-						if (booksInCart[book].bookTitle === addToCart[num].parentElement.children[0].innerText) {
-							// console.log(booksInCart[book].bookTitle);
-							// console.log(num);
-							event.stopPropagation();
+						if (booksInCart[book].bookTitle === element.parentElement.children[0].innerText) {
+							// event.stopPropagation();
         			alert("You have already have this book in your bag!");
 							return;
 						}
 					}
 				}
 
+				buildOrderList(element)
+			}
+
+			const removeBook = document.getElementsByClassName('book-remove');
+
+			window.addEventListener("DOM mutation", removeBook, (e) => console.log(e));
+
+			function buildOrderList(element) {
 				const newBook = {
-					bookTitle: addToCart[num].parentElement.children[0].innerText,
-					bookAuthor: addToCart[num].parentElement.children[1].innerText,
-					bookPrice: addToCart[num].parentElement.children[2].innerText
+					bookTitle: element.parentElement.children[0].innerText,
+					bookAuthor: element.parentElement.children[1].innerText,
+					bookPrice: element.parentElement.children[2].innerText
 				};
 
 				booksInCart.push(newBook);
@@ -162,35 +175,36 @@
 
 				book.appendChild(bookTitle);
 				bookTitle.classList.add('bag-book-title');
-				bookTitle.innerText = addToCart[num].parentElement.children[0].innerText;
+				bookTitle.innerText = element.parentElement.children[0].innerText;
 
 				book.appendChild(bookAuthor);
 				bookAuthor.classList.add('bag-book-author');
-				bookAuthor.innerText = addToCart[num].parentElement.children[1].innerText;
+				bookAuthor.innerText = element.parentElement.children[1].innerText;
 
 				book.appendChild(bookPrice);
 				bookPrice.classList.add('bag-book-price');
-				bookPrice.innerText = addToCart[num].parentElement.children[2].innerText;
+				bookPrice.innerText = element.parentElement.children[2].innerText;
 
 				book.appendChild(removeBook);
 				removeBook.classList.add('book-remove');
 				removeBook.innerHTML = 'Remove book ' + '<i class="fa-solid fa-trash-can"></i>';
 
-				removeBook.onclick = function() { removeBookFn(removeBook, num) };
+				removeBook.onclick = function() { removeBookFn(removeBook) };
 			}
 
 			// ----- REMOVE-BOOK-BTN -----------------------------------------------------------
-
-
-			function removeBookFn(book, i) {
+			function removeBookFn(book) {
+				delete booksInCart[booksInCart.findIndex(i => i.bookTitle === book.parentElement.childNodes[0].innerText)];
 				book.parentElement.remove();
-				delete booksInCart[i];
+				if (booksInCart.length > 0) {
+					booksInCart = booksInCart.filter(e => e !== undefined)
+				}
+
 			}
 
 			bag.appendChild(confirmOrder);
 			confirmOrder.classList.add('confirm-order');
 			confirmOrder.innerText = 'Confirm order';
-
 
     });
 
