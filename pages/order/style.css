@@ -9,11 +9,53 @@
 }
 
 body {
-  padding-top: 80px;
+  font-family: 'Nunito', sans-serif;
+  background: var(--grey);
+  padding: 0;
+}
+
+header {
+  text-align: center;
+}
+
+.logo {
+  color: var(--text);
+  display: inline-block;
+  font-weight: 800;
+  font-size: 32px;
+  position: relative;
+  text-decoration: none;
+  margin-top: 35px;
+}
+
+.logo:hover {
+  color: var(--blue);
+}
+
+.logo::after {
+  content: "";
+  height: 5px;
+  width: 50%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 120px;
+  border-radius: 2px;
+  background: linear-gradient(to right, rgba(239,196,67,1) 0%, rgba(239,196,67,1) 22%, rgba(228,119,35,1) 22%, rgba(228,119,35,1) 50%, #2bbcb0 50%, #2bbcb0 100%);
+}
+
+
+.error {
+  color: var(--orange);
+  font-size: .8em;
+  margin-top: -5px;
+  margin-left: 5px;
+  display: block;
 }
 
 #order-book,
-.order-book-input {
+.order-book-input,
+.order-confirmation {
   box-sizing: border-box;
 }
 
@@ -31,6 +73,8 @@ body {
 
 #order-book {
   border: 1px solid var(--grey);
+  width: 100%;
+  height: 100%;
 }
 
 .order-book-input {
@@ -38,12 +82,16 @@ body {
   height: 30px;
   border-radius: 5px;
   padding: 0 10px;
-  margin-bottom: 10px;
+  margin: 5px 0;
+}
+
+.input-error {
+  border: 1px solid var(--orange);
 }
 
 #order-book {
   width: 80%;
-  margin: 80px auto;
+  margin: 0 auto;
   border: 1px solid var(--grey);
   padding: 50px 15%;
   border-radius: var(--radius);
@@ -80,9 +128,39 @@ body {
   border: none;
 }
 
+#order-submit:disabled {
+  background: var(--text);
+}
+
 #order-submit:hover {
   background: var(--orange);
 }
+
+#order-submit:disabled:hover {
+  background: var(--text);
+}
+
 #order-submit:active {
   background: var(--blue);
+}
+
+.order-confirmation {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--blue);
+  color: #fff;
+  padding: 15% 10%;
+  z-index: 1000;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.mssg {
+  font-size: 1.3em;
+  text-align: center;
+  line-height: 2;
 }

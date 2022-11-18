@@ -217,6 +217,13 @@
 			confirmOrder.setAttribute('href','../order/')
 			confirmOrder.innerText = 'Confirm order';
 
+			confirmOrder.addEventListener('click', function(e) {
+				if (Number(e.path[1].children[0].innerText.slice(9)) === 0) {
+					e.preventDefault();
+					alert("Add book to the bag.");
+				}
+			});
+
 			function getTotalSum() {
 				let sumArray = [];
 				if (booksInCart.length > 0) {
@@ -230,8 +237,6 @@
 
 				totalSum.innerText = 'Total is ' + sum;
 			}
-
-
     });
 
 })();
