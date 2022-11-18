@@ -106,12 +106,14 @@
 
 			const logo = document.createElement('a');
 			const bagDescr = document.createElement('p');
+			const confirmOrderContainer = document.createElement('div');
+			const totalSum = document.createElement('p');
 			const confirmOrder = document.createElement('a');
 
 			bag.appendChild(logo);
 			logo.setAttribute('href','../main/');
 			logo.classList.add('logo');
-			logo.innerHTML = `book<span class='logo-span'>shop</span>`;
+			logo.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> book<span class='logo-span'>shop</span>`;
 
 			bag.appendChild(bagDescr);
 			bagDescr.classList.add('bag-descr');
@@ -133,7 +135,7 @@
 
 			function getBook(element) {
 
-				confirmOrder.setAttribute('style', 'display: flex');
+				// confirmOrder.setAttribute('style', 'display: flex');
 
 				if (booksInCart.length > 0) {
 					booksInCart = booksInCart.filter(e => e !== undefined)
@@ -190,21 +192,47 @@
 				removeBook.innerHTML = 'Remove book ' + '<i class="fa-solid fa-trash-can"></i>';
 
 				removeBook.onclick = function() { removeBookFn(removeBook) };
+				getTotalSum();
 			}
 
 			// ----- REMOVE-BOOK-BTN -----------------------------------------------------------
 			function removeBookFn(book) {
 				delete booksInCart[booksInCart.findIndex(i => i.bookTitle === book.parentElement.childNodes[0].innerText)];
 				book.parentElement.remove();
+				getTotalSum();
 				if (booksInCart.length > 0) {
 					booksInCart = booksInCart.filter(e => e !== undefined)
 				}
 
 			}
 
-			bag.appendChild(confirmOrder);
+			bag.appendChild(confirmOrderContainer);
+			confirmOrderContainer.classList.add('confirm-order-container');
+
+			confirmOrderContainer.appendChild(totalSum);
+			totalSum.classList.add('total-sum');
+			totalSum.innerText = 'Total is 0';
+
+			confirmOrderContainer.appendChild(confirmOrder);
 			confirmOrder.classList.add('confirm-order');
 			confirmOrder.innerText = 'Confirm order';
+
+			function getTotalSum() {
+				let sumArray = [];
+				if (booksInCart.length > 0) {
+					booksInCart.forEach((item, i) => {
+						// console.log(item.bookPrice);
+						sumArray.push(Number(item.bookPrice.slice(1)));
+					});
+				}
+				const sum = sumArray.reduce((accumulator, value) => {
+				  return accumulator + value;
+				}, 0);
+
+				totalSum.innerText = 'Total is ' + sum;
+			}
+
+			// getTotalSum()
 
     });
 
