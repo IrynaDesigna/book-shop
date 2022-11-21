@@ -150,13 +150,24 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--blue);
+  background: rgba(43, 188, 176, 0.9);
   color: #fff;
   padding: 15% 10%;
   z-index: 1000;
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.mssg-close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: var(--radius);
+  padding: 5px;
+  cursor: pointer;
 }
 
 .mssg {

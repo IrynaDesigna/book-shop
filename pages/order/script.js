@@ -1,8 +1,8 @@
 ;(function () {
 	"use strict";
-	const header = document.querySelector('header');
-	const main = document.querySelector('main');
-	const logo = document.createElement('a');
+	const header = document.querySelector('header'),
+				main = document.querySelector('main'),
+				logo = document.createElement('a');
 
 	header.appendChild(logo);
 	logo.setAttribute('href','../main/');
@@ -102,19 +102,22 @@
 	}
 
 	function checkboxCheck(el){
-	// 	for (let index in gift) {
-	// 		if (gift[index].checked) { checkedGift++ }
-	// 	}
-	//
-	// 	if (checkedGift !== 2) {
-	// 		giftsErr.innerText = 'Pleace, choose 2 gifts'
-	// 	}
-		validationCheck()
-	}
+		checkedGift = 0;
+		console.log(el);
+		console.log(checkedGift);
+		for (let index in gift) {
+			if (gift[index].checked) { checkedGift++ }
+		}
+		console.log(checkedGift);
+		if (checkedGift === 2) {
+			giftsErr. innerText = '';
+			validationCheck()
+		} else {
+			giftsErr. innerText = 'Please, choose any 2 gifts.';
+			validationCheck()
 
-	// document
-	//  .querySelectorAll("input")
-	//  .forEach((elem) => elem.addEventListener("keyup", calculateSum));
+		}
+	}
 
 	function validationCheck() {
 		if (
@@ -126,22 +129,35 @@
 			deliveryDate.value !== "" &&
 			checkedGift === 2
 		) { submitBtn.removeAttribute('disabled') }
-		else return;
+		else {
+			submitBtn.setAttribute('disabled','true');
+		};
 	}
 
 	function orderSubmit(e) {
 		e.preventDefault();
 
-		const orderConfirmation = document.createElement('div');
-		const mssg = document.createElement('p');
+		const orderConfirmation = document.createElement('div'),
+					mssg = document.createElement('p'),
+					mssgClose = document.createElement('div');
 
 		main.appendChild(orderConfirmation);
-		orderConfirmation.classList.add('order-confirmation')
+		orderConfirmation.classList.add('order-confirmation');
+
+		orderConfirmation.appendChild(mssgClose);
+		mssgClose.classList.add('mssg-close');
+		mssgClose.innerText = 'close';
 
 		orderConfirmation.appendChild(mssg);
 		mssg.classList.add('mssg')
 		mssg.innerHTML = `Congratulations, your order has been made! </br> Delivery address is ` + aptNum.value + `-` + houseNum.value + ` ` + street.value + `</br>` +
 										 `Customer is ` + name.value + ` ` + `surname.value`;
+
+		mssgClose.addEventListener('click', closeMssgFn);
+	}
+
+	function closeMssgFn(el) {
+		el.target.parentElement.remove();
 	}
 
 })();

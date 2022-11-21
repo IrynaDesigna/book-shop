@@ -1,10 +1,10 @@
 ;(function () {
 	"use strict";
 
-  const main = document.querySelector('.main');
-  const ul = document.createElement('ul');
-	const bag = document.createElement('div');
-  const fragment = new DocumentFragment();
+  const main = document.querySelector('.main'),
+				ul = document.createElement('ul'),
+				bag = document.createElement('div'),
+				fragment = new DocumentFragment();
 
 	let booksInCart = [];
 
@@ -16,18 +16,18 @@
     })
     .then(data => {
 			for (const book of data) {
-		    const li = document.createElement('li');
-		    const book_ = document.createElement('div');
-		    const bookCover = document.createElement('div');
-		    const bookCoverImg = document.createElement('img');
-		    const bookDescrCover = document.createElement('div');
-		    const bookAuthor = document.createElement('h5');
-		    const bookTitle = document.createElement('h3');
-		    const bookPrice = document.createElement('h4');
-		    const bookDescr = document.createElement('p');
-		    const addBook = document.createElement('div');
-		    const readMore = document.createElement('div');
-		    const closeBookDescr = document.createElement('div');
+		    const li = document.createElement('li'),
+							book_ = document.createElement('div'),
+							bookCover = document.createElement('div'),
+							bookCoverImg = document.createElement('img'),
+							bookDescrCover = document.createElement('div'),
+							bookAuthor = document.createElement('h5'),
+							bookTitle = document.createElement('h3'),
+							bookPrice = document.createElement('h4'),
+							bookDescr = document.createElement('p'),
+							addBook = document.createElement('div'),
+							readMore = document.createElement('div'),
+							closeBookDescr = document.createElement('div');
 
 		    fragment.append(li);
 		    li.classList.add('book-container');
@@ -84,9 +84,9 @@
 		  ul.classList.add('book-list');
 
 			// ----- READ-MORE-BTN -----------------------------------------------------------
-			const bookDecrBlock = document.getElementsByClassName('book-descr');
-			const readMoreBtns = document.getElementsByClassName('read-more-btn');
-			const closeBookDecr = document.getElementsByClassName('close-book-descr');
+			const bookDecrBlock = document.getElementsByClassName('book-descr'),
+						readMoreBtns = document.getElementsByClassName('read-more-btn'),
+						closeBookDecr = document.getElementsByClassName('close-book-descr');
 
 			for (let i = 0; i < readMoreBtns.length; i++) {
 				readMoreBtns[i].onclick = function() {openDescription(i)};
@@ -98,17 +98,18 @@
 			}
 
 			// ----- BAG - BLOCK -----------------------------------------------------------
+
 			const booksList = document.createElement('ul');
 
 			main.appendChild(bag);
 			bag.setAttribute('id','bag')
 
 
-			const logo = document.createElement('a');
-			const bagDescr = document.createElement('p');
-			const confirmOrderContainer = document.createElement('div');
-			const totalSum = document.createElement('p');
-			const confirmOrder = document.createElement('a');
+			const logo = document.createElement('a'),
+						bagDescr = document.createElement('p'),
+						confirmOrderContainer = document.createElement('div'),
+						totalSum = document.createElement('p'),
+						confirmOrder = document.createElement('a');
 
 			bag.appendChild(logo);
 			logo.setAttribute('href','../main/');
@@ -164,11 +165,11 @@
 
 				booksInCart.push(newBook);
 
-				const book = document.createElement('li');
-				const bookTitle = document.createElement('div');
-				const bookAuthor = document.createElement('div');
-				const bookPrice = document.createElement('div');
-				const removeBook = document.createElement('div');
+				const book = document.createElement('li'),
+							bookTitle = document.createElement('div'),
+							bookAuthor = document.createElement('div'),
+							bookPrice = document.createElement('div'),
+							removeBook = document.createElement('div');
 
 				bag.appendChild(booksList);
 				booksList.classList.add('bag-list');
