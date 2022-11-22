@@ -103,12 +103,9 @@
 
 	function checkboxCheck(el){
 		checkedGift = 0;
-		console.log(el);
-		console.log(checkedGift);
 		for (let index in gift) {
 			if (gift[index].checked) { checkedGift++ }
 		}
-		console.log(checkedGift);
 		if (checkedGift === 2) {
 			giftsErr. innerText = '';
 			validationCheck()
