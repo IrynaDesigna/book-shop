@@ -122,10 +122,15 @@
 	function validationCheck() {
 		if (
 			name.value !== "" &&
+			name.value.match(/^[A-Za-z]+$/) &&
 			surname.value !== "" &&
+			surname.value.match(/^[A-Za-z]+$/) &&
 			houseNum.value !== "" &&
+			houseNum.value > 0 &&
 			street.value !== "" &&
+			street.value.match(/^[A-Za-z-0-9-\s]+$/) &&
 			aptNum.value !== "" &&
+			aptNum.value.match(/^[0-9]+[0-9-\-]+[0-9]+$/) &&
 			deliveryDate.value !== "" &&
 			checkedGift === 2
 		) { submitBtn.removeAttribute('disabled') }
